@@ -8,7 +8,7 @@ to install the postgres driver run ```pipenv run i_pgdriver```
 to start the server, run ```pipenv run start``` at the root directory
 
 
-##vscode settings
+## vscode settings ##
 to gain import intellisense, add the following to either your local or global settings.json
 
 ```json
