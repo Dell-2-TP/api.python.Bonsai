@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-marshmallow = "*"
+flask-sqlalchemy = "*"
+marshmallow-sqlalchemy = "*"
+
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+start = "pipenv run python app/main/app.py"
+i_pgdriver = "pipenv run pip install psycopg2-binary"
+
