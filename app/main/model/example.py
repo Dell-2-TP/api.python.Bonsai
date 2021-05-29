@@ -1,7 +1,7 @@
 #Example model
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-db = SQLAlchemy()
+from model import db,ma
 
 class Example(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +14,7 @@ class Example(db.Model):
 
 
 #Example Schema
-ma = Marshmallow(db)
+
 class ExampleSchema(ma.Schema):
     class Meta:
         fields = ('id','name')
