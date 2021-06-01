@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #init service, routes. might refactor to init multiple with a single initialization
 service = Service(app,db)
-sample_controller = SampleController(app,db,service)
+sample_controller = SampleController(app,service)
 
 if(__name__=='__main__'):
     db.init_app(app)
