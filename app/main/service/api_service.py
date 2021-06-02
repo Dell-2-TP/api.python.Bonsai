@@ -37,10 +37,25 @@ class Service(object):
         result = self.educations_schema.dump(all_educations)
         return self.educations_schema.jsonify(result)
 
-    # get single education
+    # get single education by id
     def get_education_by_id(self, id):
         education = Education.query.get(id)
         return self.education_schema.jsonify(education)
 
-    def update_education(self):
-        pass
+    # update education by id
+    def update_education(self, id):
+        education = Education.query.get(id)
+
+        emp_id = request.json['emp_id']
+        institution = request.json['institution']
+        field = request.json['field']
+        degree = request.json['degree']
+
+        education.emp_id = emp_id
+        education.institution = institution
+        education.field = field
+        education.degree = degree
+
+        self.db.session.commit()
+
+        return self.education_schema.jsonify(education)

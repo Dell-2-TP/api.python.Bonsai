@@ -14,7 +14,7 @@ class EducationController(object):
         # get single
         app.add_url_rule('/education/<id>',methods=['GET'],view_func=self.get_education_by_id)
         # update education
-        # app.add_url_rule('/education')
+        app.add_url_rule('/education/<id>', methods=["PUT"],view_func=self.update_education)
         # delete education
         # 
 
@@ -29,9 +29,9 @@ class EducationController(object):
     def get_education_by_id(self, id):
         return self.service.get_education_by_id(id)
 
-    def update_by_id(self):
-        pass
+    def update_education(self, id):
+        return self.service.update_education(id)
 
-    def delete_by_id(self):
-        pass        
+    def delete_by_id(self, id):
+        return self.service.delete_by_id(id)
     
