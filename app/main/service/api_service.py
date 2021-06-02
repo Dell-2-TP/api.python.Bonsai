@@ -9,6 +9,7 @@ class Service(object):
        self.db=db
        self.example_schema=ExampleSchema()
        self.education_schema=EducationSchema()
+       self.educations_schema=EducationSchema(many=True)
 
     def example(self):
         return 'example result'
@@ -28,4 +29,18 @@ class Service(object):
         education = Education(emp_id, institution, field, degree)
         self.db.session.add(education)
         self.db.session.commit()
-        return self.example_schema.jsonify(education)
+        return self.education_schema.jsonify(education)
+
+    # get all educations
+    def get_educations(self):
+        all_educations = Education.query.all()
+        result = self.educations_schema.dump(all_educations)
+        return self.educations_schema.jsonify(result)
+
+    # get single education
+    def get_education_by_id(self, id):
+        education = Education.query.get(id)
+        return self.education_schema.jsonify(education)
+
+    def update_education(self):
+        pass
