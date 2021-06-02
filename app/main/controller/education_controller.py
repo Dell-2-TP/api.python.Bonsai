@@ -16,7 +16,7 @@ class EducationController(object):
         # update education
         app.add_url_rule('/education/<id>', methods=["PUT"],view_func=self.update_education)
         # delete education
-        # 
+        app.add_url_rule('/education/<id>', methods=["DELETE"],view_func=self.delete_education)
 
         
 
@@ -32,6 +32,6 @@ class EducationController(object):
     def update_education(self, id):
         return self.service.update_education(id)
 
-    def delete_by_id(self, id):
-        return self.service.delete_by_id(id)
+    def delete_education(self, id):
+        return self.service.delete_education(id)
     

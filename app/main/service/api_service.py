@@ -59,3 +59,12 @@ class Service(object):
         self.db.session.commit()
 
         return self.education_schema.jsonify(education)
+
+
+    def delete_education(self, id):
+        education = Education.query.get(id)
+
+        self.db.session.delete(education)
+        self.db.session.commit()
+
+        return self.education_schema.jsonify(education)
