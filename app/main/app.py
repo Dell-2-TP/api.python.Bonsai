@@ -9,7 +9,7 @@ from model import db
 app = Flask(__name__)
 
 #sqlalchemy database config, dialect://user:pass@url:port/dbname
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:5683@localhost:5432/Bonsai'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Password123@localhost:5432/Bonsai'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
