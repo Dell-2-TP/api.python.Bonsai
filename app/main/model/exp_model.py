@@ -3,8 +3,8 @@ from model import db, ma
 
 class Experience(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    employee_id = db.Column(db.Integer, ForeignKey('employee.id'))
-    description = db.Column(db.Text)
+    employee_id = db.Column(db.Integer)
+    description = db.Column(db.String(200))
     start_date = db.Column(db.Date)
     end_date = db.Column(db.Date)
 
