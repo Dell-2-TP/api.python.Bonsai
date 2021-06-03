@@ -1,11 +1,12 @@
 #Example model
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-from model import db,ma
+from model import db,ma, employee
+from sqlalchemy.sql.schema import ForeignKey
 
 class Education(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    emp_id = db.Column(db.Integer)
+    emp_id = db.Column(db.Integer, db.ForeignKey('employee.id'))
     institution = db.Column(db.String(100))
     field = db.Column(db.String(100))
     degree = db.Column(db.String(100))
