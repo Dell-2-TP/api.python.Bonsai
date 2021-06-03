@@ -2,7 +2,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from service.api_service import Service
+from service.exp_service import ExperienceService
 from controller.sample_controller import SampleController
+from controller.exp_controller import ExperienceController
 from model import db
 from controller.employee_controller import EmployeeController
 from service.employee_service import EmployeeService
@@ -23,6 +25,8 @@ sample_controller = SampleController(app,service)
 employeeservice = EmployeeService(app,db)
 employee_controller = EmployeeController(app,employeeservice)
 
+exp_service = ExperienceService(app, db)
+exp_controller = ExperienceController(app, exp_service)
 
 if(__name__=='__main__'):
     db.init_app(app)
