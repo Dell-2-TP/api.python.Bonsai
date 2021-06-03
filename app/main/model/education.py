@@ -6,7 +6,7 @@ from sqlalchemy.sql.schema import ForeignKey
 
 class Education(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    emp_id = db.Column(db.Integer, db.ForeignKey('employee.id'))
+    employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'))
     institution = db.Column(db.String(100))
     field = db.Column(db.String(100))
     degree = db.Column(db.String(100))
@@ -14,7 +14,7 @@ class Education(db.Model):
 
 
     def __init__(self,emp_id,institution,field,degree) -> None:
-        self.emp_id=emp_id
+        self.employee_id=emp_id
         self.institution=institution
         self.field=field
         self.degree=degree

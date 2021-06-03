@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-from service.api_service import Service
-from controller.sample_controller import SampleController
+from service.education_service import EducationService
 from controller.education_controller import EducationController
 from model import db
 
@@ -16,8 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 #init service, routes. might refactor to init multiple with a single initialization
-service = Service(app,db)
-sample_controller = SampleController(app,service)
+service = EducationService(app,db)
 education_controller = EducationController(app,service)
 
 if(__name__=='__main__'):

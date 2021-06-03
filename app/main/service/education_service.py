@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from model.example import Example, ExampleSchema
 from model.education import Education, EducationSchema
-class Service(object):
+class EducationService(object):
     def __init__(self,app:Flask,db:SQLAlchemy) -> None:
        self.app=app
        self.db=db
@@ -21,12 +21,12 @@ class Service(object):
         return self.example_schema.jsonify(example)
 
     def add_education(self):
-        emp_id = request.json['emp_id']
+        employee_id = request.json['employee_id']
         institution = request.json['institution']
         field = request.json['field']
         degree = request.json['degree']
 
-        education = Education(emp_id, institution, field, degree)
+        education = Education(employee_id, institution, field, degree)
         self.db.session.add(education)
         self.db.session.commit()
         return self.education_schema.jsonify(education)
@@ -43,8 +43,8 @@ class Service(object):
         return self.education_schema.jsonify(education)
 
     # get all educations matching employee_id
-    def get_educations_by_emp_id(self, emp_id_int):
-        all_educations = Education.query.filter(Education.emp_id==emp_id_int).all()
+    def get_educations_by_employee_id(self, employee_id_int):
+        all_educations = Education.query.filter(Education.employee_id==employee_id_int).all()
         result = self.educations_schema.dump(all_educations)
         return self.educations_schema.jsonify(result)
 
@@ -71,12 +71,12 @@ class Service(object):
     def update_education(self, id):
         education = Education.query.get(id)
 
-        emp_id = request.json['emp_id']
+        employee_id = request.json['employee_id']
         institution = request.json['institution']
         field = request.json['field']
         degree = request.json['degree']
 
-        education.emp_id = emp_id
+        education.employee_id = employee_id
         education.institution = institution
         education.field = field
         education.degree = degree

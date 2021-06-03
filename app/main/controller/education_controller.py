@@ -1,7 +1,7 @@
 from flask import Flask
-from service.api_service import Service
+from service.education_service import EducationService
 class EducationController(object):
-    def __init__(self,app:Flask,service:Service) -> None:
+    def __init__(self,app:Flask,service:EducationService) -> None:
         self.app=app
         self.service=service
         self.add_routes(app)
@@ -14,7 +14,7 @@ class EducationController(object):
         # get single
         app.add_url_rule('/education/<id>',methods=['GET'],view_func=self.get_education_by_id)
         # get all by employee id
-        app.add_url_rule('/education/empid/<emp_id>',methods=['GET'], view_func=self.get_educations_by_emp_id)
+        app.add_url_rule('/education/empid/<employee_id>',methods=['GET'], view_func=self.get_educations_by_employee_id)
         # get all by institution
         app.add_url_rule('/education/institution/<institution>', methods=['GET'], view_func=self.get_by_institution)
         # get all by degree
@@ -38,8 +38,8 @@ class EducationController(object):
     def get_education_by_id(self, id):
         return self.service.get_education_by_id(id)
 
-    def get_educations_by_emp_id(self, emp_id):
-        return self.service.get_educations_by_emp_id(emp_id)
+    def get_educations_by_employee_id(self, employee_id):
+        return self.service.get_educations_by_employee_id(employee_id)
 
     def get_by_institution(self, institution):
         return self.service.get_by_institution(institution)
