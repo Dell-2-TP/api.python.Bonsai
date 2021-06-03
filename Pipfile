@@ -9,6 +9,10 @@ flask-marshmallow = "*"
 flask-sqlalchemy = "*"
 marshmallow-sqlalchemy = "*"
 colorama = "*"
+<<<<<<< HEAD
+=======
+
+>>>>>>> staging
 
 [dev-packages]
 
