@@ -1,7 +1,7 @@
 from flask import Flask
-from service.api_service import Service
+from service.job_service import JobService
 class JobController(object):
-    def __init__(self,app:Flask,service:Service) -> None:
+    def __init__(self,app:Flask,service:JobService) -> None:
         self.app=app
         self.service=service
         self.add_routes(app)

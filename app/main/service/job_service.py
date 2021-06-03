@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify, Flask, request
 from model.job import Job, JobSchema
-class Service(object):
+class JobService(object):
     def __init__(self,db:SQLAlchemy, app: Flask) -> None:
        self.app = app
        self.db=db
