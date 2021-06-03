@@ -12,10 +12,11 @@ class ExperienceService(object):
     # Creating new experience
     def add_experience(self):
         description = request.json['description']
+        employee_id = request.json['employee_id']
         start_date = request.json['start_date']
         end_date = request.json['end_date']
 
-        new_experience = Experience(description, start_date, end_date)
+        new_experience = Experience(employee_id, description, start_date, end_date)
 
         self.db.session.add(new_experience)
         self.db.session.commit()
@@ -37,11 +38,13 @@ class ExperienceService(object):
     # Updating single experience
     def update_experience(self, id):
         experience = Experience.query.get(id)
-
+        
+        employee_id = request.json['employee_id']
         description = request.json['description']
         start_date = request.json['start_date']
         end_date = request.json['end_date']
 
+        experience.employee_id = employee_id
         experience.description = description
         experience.start_date = start_date
         experience.end_date = end_date

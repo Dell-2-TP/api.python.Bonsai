@@ -12,7 +12,7 @@ class ExperienceController(object):
         app.add_url_rule('/experience', methods=['GET'], view_func=self.get_experiences)
         app.add_url_rule('/experience/<id>', methods=['GET'], view_func=self.get_experience)
         app.add_url_rule('/experience/<id>', methods=['PUT'], view_func=self.update_experience)
-        app.add_url_rule('/experience/<id>', methods=['DELETE'], view_func=self.delete_experiencegit)
+        app.add_url_rule('/experience/<id>', methods=['DELETE'], view_func=self.delete_experience)
 
     def add_experience(self):
         return self.service.add_experience()
