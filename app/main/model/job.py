@@ -2,9 +2,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-from service.api_service import Service
-from controller.sample_controller import SampleController
-from model import db
+from model import db, ma
 
 class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
