@@ -190,7 +190,7 @@
             "description": "Failed. Misunderstood Request."
           },
           "404": {
-            "description": "Failed. Book Request not found."
+            "description": "Failed. Employee not found."
           }
         }
       }
@@ -280,7 +280,7 @@
           "description": "Failed. Misunderstood Request."
         },
         "404": {
-          "description": "Failed. Book request not found."
+          "description": "Failed. Education not found."
         }
       }
     },
@@ -353,7 +353,7 @@
           "description": "Failed. Misunderstood Request."
         },
         "404": {
-          "description": "Failed. Book Request not found."
+          "description": "Failed. Education not found."
         }
       }
     }
@@ -442,7 +442,7 @@
         "description": "Failed. Misunderstood Request."
       },
       "404": {
-        "description": "Failed. Book request not found."
+        "description": "Failed. Experience not found."
       }
     }
   },
@@ -515,7 +515,7 @@
         "description": "Failed. Misunderstood Request."
       },
       "404": {
-        "description": "Failed. Book Request not found."
+        "description": "Failed. Experience not found."
       }
     }
   }
@@ -605,7 +605,7 @@
       "description": "Failed. Misunderstood Request."
     },
     "404": {
-      "description": "Failed. Book request not found."
+      "description": "Failed. Job not found."
     }
   }
 },
@@ -678,13 +678,12 @@
       "description": "Failed. Misunderstood Request."
     },
     "404": {
-      "description": "Failed. Book Request not found."
+      "description": "Failed. Job not found."
     }
   }
 }
 }
 },
-
   "components": {
     "schemas": {
       "id": {
