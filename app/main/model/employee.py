@@ -18,9 +18,8 @@ class Employee(db.Model):
 
 
 
-    def __init__(self,name,job) -> None:
-        self.name=name,
-        self.job=job
+    def __init__(self,name) -> None:
+        self.name=name
 
 
 

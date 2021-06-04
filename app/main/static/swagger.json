@@ -86,20 +86,19 @@
             }
         },
         "/employee/{id}": {
-            "parameters": [{
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID of the employee that we want to match",
-                "type": "Employee Post Body",
-                "schema": {
-                    "$ref": "#/components/schemas/EmployeePostBody"
-                }
-            }],
             "get": {
                 "tags": [
                     "Employee"
                 ],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "the id of the employee we want to get",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                }],
                 "summary": "Get employee with given ID",
                 "responses": {
                     "200": {
@@ -122,14 +121,24 @@
                     "Employee"
                 ],
                 "parameters": [{
-                    "in": "path",
-                    "name": "id",
-                    "required": true,
-                    "description": "employee id",
-                    "schema": {
-                        "$ref": "#/components/schemas/id"
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "employee id",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "put body",
+                        "required": true,
+                        "description": "the employee we're updating",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeePostBody"
+                        }
                     }
-                }],
+                ],
                 "requestBody": {
                     "description": "Employee Object",
                     "required": true,
@@ -513,18 +522,15 @@
                 "tags": [
                     "Job"
                 ],
-                "summary": "Creates a new Job",
-                "requestBody": {
-                    "description": "Job Post Object",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/JobPostBody"
-                            }
-                        }
+                "parameters": [{
+                    "name": "job post body",
+                    "in": "body",
+                    "schema": {
+                        "$ref": "#/components/schemas/JobPostBody"
                     }
-                },
+                }],
+                "summary": "Creates a new Job",
+
                 "produces": [
                     "application/json"
                 ],
@@ -532,7 +538,7 @@
                     "201": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/components/schemas/id"
+                            "$ref": "#/components/schemas/Job"
                         }
                     },
                     "400": {
@@ -542,13 +548,6 @@
             }
         },
         "/job/{id}": {
-            "parameters": [{
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID of the job that we want to match",
-                "type": "string"
-            }],
             "get": {
                 "tags": [
                     "Job"
@@ -584,14 +583,24 @@
                     "Job"
                 ],
                 "parameters": [{
-                    "in": "path",
-                    "name": "id",
-                    "required": true,
-                    "description": "job id",
-                    "schema": {
-                        "$ref": "#/components/schemas/id"
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "job id",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "put body",
+                        "required": true,
+                        "description": "job put body for update",
+                        "schema": {
+                            "$ref": "#/components/schemas/JobPostBody"
+                        }
                     }
-                }],
+                ],
                 "requestBody": {
                     "description": "Job Object",
                     "required": true,
@@ -687,8 +696,8 @@
                         "format": "string"
                     },
                     "salary": {
-                        "type": "float",
-                        "format": "number"
+                        "type": "number",
+                        "format": "float64"
                     }
                 }
             },
@@ -769,8 +778,8 @@
                         "format": "int32"
                     },
                     "salary": {
-                        "type": "float",
-                        "format": "number"
+                        "type": "number",
+                        "format": "float64"
                     }
                 }
             },
@@ -819,14 +828,9 @@
                 }
             },
             "Jobs_request": {
-                "type": "object",
-                "properties": {
-                    "Employee": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "$ref": "#/components/schemas/Job"
-                        }
-                    }
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Job"
                 }
             },
             "Education_request": {

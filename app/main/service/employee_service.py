@@ -13,9 +13,8 @@ class EmployeeService(object):
 
     def add_employee(self):
         name = request.json['name']
-        job = request.json['job']
 
-        new_employee = Employee(name, job)
+        new_employee = Employee(name)
 
         self.db.session.add(new_employee)
         self.db.session.commit()
@@ -37,10 +36,8 @@ class EmployeeService(object):
         employee = Employee.query.get(id)
         
         name = request.json['name']
-        job = request.json['job']
 
         employee.name = name
-        employee.job = job
     
 
         self.db.session.commit()
@@ -48,7 +45,7 @@ class EmployeeService(object):
         result = self.employee_schema.jsonify(employee)
 
         return result
-
+    #todo: fix cascading delete
     def delete_employee(self, id):
         employee = Employee.query.get(id)
         
