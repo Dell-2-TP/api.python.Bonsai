@@ -8,6 +8,7 @@ flask = "*"
 flask-marshmallow = "*"
 flask-sqlalchemy = "*"
 marshmallow-sqlalchemy = "*"
+colorama = "*"
 
 
 [dev-packages]
@@ -18,4 +19,3 @@ python_version = "3.8"
 [scripts]
 start = "pipenv run python app/main/app.py"
 i_pgdriver = "pipenv run pip install psycopg2-binary"
-
