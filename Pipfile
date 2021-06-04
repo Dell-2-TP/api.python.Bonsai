@@ -9,6 +9,8 @@ flask-marshmallow = "*"
 flask-sqlalchemy = "*"
 marshmallow-sqlalchemy = "*"
 flask-swagger-ui = "*"
+colorama = "*"
+
 
 [dev-packages]
 
