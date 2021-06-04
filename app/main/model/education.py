@@ -1,8 +1,9 @@
 #Example model
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-from model import db,ma, employee
+from model import db,ma
 from sqlalchemy.sql.schema import ForeignKey
+
 
 class Education(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,6 +24,7 @@ class Education(db.Model):
 
 #Education Schema
 
-class EducationSchema(ma.Schema):
+class EducationSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
-        fields = ('id','emp_id', 'institution','field', 'degree')
+        model=Education
+        include_fk=True

@@ -17,7 +17,7 @@ class JobService(object):
         return self.one_job_schema.jsonify(one_job)
 
     def add_job(self):
-        job = Job(request.json['title'], request.json['salary'])
+        job = Job(request.json['employee_id'],request.json['title'], request.json['salary'])
         self.db.session.add(job)
         self.db.session.commit()
         return self.one_job_schema.jsonify(job)
