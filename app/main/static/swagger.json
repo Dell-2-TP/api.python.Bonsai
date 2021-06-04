@@ -318,7 +318,7 @@
                 }
             }
         },
-        "education/empid/{employee_id}":{
+        "/education/empid/{employee_id}":{
           "get": {
             "tags": [
                 "Education"
@@ -752,7 +752,7 @@
             "id": {
                 "properties": {
                     "uuid": {
-                        "type": "string"
+                        "type": "integer"
                     }
                 }
             },
