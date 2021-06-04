@@ -1,896 +1,958 @@
 {
-  "swagger":"2.0",
-  "info": {
-    "description": "Bamboo Mock",
-      "version": "1.0.0",
-      "title": "Bonsai",
-      "contact":{
-        "name":"Dell-2-TP",
-        "url":"https://github.com/Dell-2-TP/api.python.Bonsai"
-      },
-      "license": {
-        "name": "MIT",
-        "url": "https://opensource.org/licenses/MIT"
-      }
-  },
-
-  "tags": [
-    {
-      "name": "Employee",
-      "description": " API for requesting and return employees"
-    },
-    {
-      "name": "Job",
-      "description": "Example API for requesting and return jobs"
-    },
-    {
-      "name": "Education",
-      "description": "Example API for requesting and return education"
-    },
-    {
-      "name": "Experience",
-      "description": "Example API for requesting and return experience"
-    }
-  ],
-  "paths": {
-    "/employee": {
-      "get": {
-        "tags": [
-          "Employee"
-        ],
-        "summary": "Returns all employees",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/components/schemas/Employees_request"
-            }
-          }
+    "openapi":"3.0.0",
+    "info": {
+        "description": "Bamboo Mock",
+        "version": "1.0.0",
+        "title": "Bonsai",
+        "contact": {
+            "name": "Dell-2-TP",
+            "url": "https://github.com/Dell-2-TP/api.python.Bonsai"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
         }
-      },
-      "post": {
-        "tags": [
-          "Employee"
-        ],
-        "summary": "Creates a new Employee",
-        "requestBody": {
-          "description": "Employee Post Object",
-          "required": true,
-          "content": {
-            "application/json": {
+    },
+    "tags": [{
+            "name": "Employee",
+            "description": " API for requesting and return employees"
+        },
+        {
+            "name": "Job",
+            "description": "Example API for requesting and return jobs"
+        },
+        {
+            "name": "Education",
+            "description": "Example API for requesting and return education"
+        },
+        {
+            "name": "Experience",
+            "description": "Example API for requesting and return experience"
+        }
+    ],
+    "paths": {
+        "/employee": {
+            "get": {
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Returns all employees",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Employees_response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Employee"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "employee post body",
+                    "schema": {
+                        "$ref": "#/components/schemas/EmployeePostBody"
+                    }
+                }],
+                "summary": "Creates a new Employee",
+         
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/employee/{id}": {
+            "get": {
+                "tags": [
+                    "Employee"
+                ],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "employee id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                }],
+                "summary": "Get employee with given ID",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Employee"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Employee not found."
+                    }
+                }
+            },
+            "put": {
+                "summary": "edit an employee by ID",
+                "tags": [
+                    "Employee"
+                ],
+                "parameters": [{
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "employee id",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "put body",
+                        "required": true,
+                        "description": "the employee we're updating",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeePostBody"
+                        }
+                    }
+                ],
+             
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Employee"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete employee by ID",
+                "tags": [
+                    "Employee"
+                ],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "employee Id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                }],
+                "responses": {
+                    "204": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Employee not found."
+                    }
+                }
+            }
+        },
+        "/education": {
+            "get": {
+                "tags": [
+                    "Education"
+                ],
+                "summary": "Returns all education",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Education_response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Education"
+                ],
+                "parameters": [{
+                  "in": "body",
+                  "name": "education post body",
+                  "schema": {
+                      "$ref": "#/components/schemas/EducationPostBody"
+                  }
+              }],
+                "summary": "Creates new Education",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/education/{id}": {
+            "get": {
+                "tags": [
+                    "Education"
+                ],
+                
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "education id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                }],
+                "summary": "Get Education with given ID",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Education"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Education not found."
+                    }
+                }
+            },
+            "put": {
+                "summary": "edit an education by ID",
+                "tags": [
+                    "Education"
+                ],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "education id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                },
+                {
+                  "in": "body",
+                  "name": "put body",
+                  "required": true,
+                  "description": "the education we're updating",
+                  "schema": {
+                      "$ref": "#/components/schemas/EducationPostBody"
+                  }
+              }],
+        
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Education"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete education by ID",
+                "tags": [
+                    "Education"
+                ],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "education Id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                }],
+                "responses": {
+                    "204": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Education not found."
+                    }
+                }
+            }
+        },
+        "education/empid/{employee_id}":{
+          "get": {
+            "tags": [
+                "Education"
+            ],
+            "parameters": [{
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "description": "employee id",
+                "schema": {
+                    "$ref": "#/components/schemas/id"
+                }
+            }],
+            "summary": "Get education by employee ID",
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/components/schemas/Education"
+                    }
+                },
+                "400": {
+                    "description": "Failed. Misunderstood Request."
+                },
+                "404": {
+                    "description": "Failed. Employee not found."
+                }
+            }
+        }
+        },
+        "/education/institution/{institution}":{
+          "get": {
+            "tags": [
+                "Education"
+            ],
+            "parameters": [{
+                "in": "path",
+                "name": "institution",
+                "required": true,
+                "description": "institution",
+                "schema": {
+                    "$ref": "#/components/schemas/institution"
+                }
+            }],
+            "summary": "Get Education with given institution",
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/components/schemas/Education"
+                    }
+                },
+                "400": {
+                    "description": "Failed. Misunderstood Request."
+                },
+                "404": {
+                    "description": "Failed. Education not found."
+                }
+            }
+        }
+        },
+      "/education/degree/{degree}":{
+        "get": {
+          "tags": [
+              "Education"
+          ],
+          "parameters": [{
+              "in": "path",
+              "name": "degree",
+              "required": true,
+              "description": "degree",
               "schema": {
-                "$ref": "#/components/schemas/EmployeePostBody"
+                  "$ref": "#/components/schemas/degree"
               }
-            }
+          }],
+          "summary": "Get employee with given degree",
+          "responses": {
+              "200": {
+                  "description": "OK",
+                  "schema": {
+                      "$ref": "#/components/schemas/Education"
+                  }
+              },
+              "400": {
+                  "description": "Failed. Misunderstood Request."
+              },
+              "404": {
+                  "description": "Failed. Employee not found."
+              }
           }
-        },
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "201": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          },
-          "400": {
-            "description": "Failed. Bad post data."
-          }
-        }
       }
-    },
-    "/employee/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "ID of the employee that we want to match",
-          "type": "string"
-        }
-      ],
-      "get": {
-        "tags": [
-          "Employee"
-        ],
-        "summary": "Get employee with given ID",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "description": "employee id",
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/components/schemas/Employee"
-            }
-          },
-          "400": {
-            "description": "Failed. Misunderstood Request."
-          },
-          "404": {
-            "description": "Failed. Employee not found."
-          }
-        }
       },
-      "put": {
-        "summary": "edit an employee by ID",
-        "tags": [
-          "Employee"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "description": "employee id",
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Employee Object",
-          "required": true,
-          "content": {
-            "application/json": {
+      "/education/field/{field}":{
+        "get": {
+          "tags": [
+              "Education"
+          ],
+          "parameters": [{
+              "in": "path",
+              "name": "field",
+              "required": true,
+              "description": "degree",
               "schema": {
-                "$ref": "#/components/schemas/Employee"
+                  "$ref": "#/components/schemas/field"
               }
-            }
-          }
-        },
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/components/schemas/Employee"
-            }
-          },
-          "400": {
-            "description": "Failed. Bad post data."
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete employee by ID",
-        "tags": [
-          "Employee"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "description": "employee Id",
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          },
-          "400": {
-            "description": "Failed. Misunderstood Request."
-          },
-          "404": {
-            "description": "Failed. Employee not found."
-          }
-        }
-      }
-    },
-    "/education": {
-      "get": {
-        "tags": [
-          "Education"
-        ],
-        "summary": "Returns all education",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/components/schemas/Education_request"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Education"
-        ],
-        "summary": "Creates new Education",
-        "requestBody": {
-          "description": "Education Post Object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EducationPostBody"
+          }],
+          "summary": "Get employee with given field",
+          "responses": {
+              "200": {
+                  "description": "OK",
+                  "schema": {
+                      "$ref": "#/components/schemas/Education"
+                  }
+              },
+              "400": {
+                  "description": "Failed. Misunderstood Request."
+              },
+              "404": {
+                  "description": "Failed. Employee not found."
               }
-            }
           }
-        },
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "201": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          },
-          "400": {
-            "description": "Failed. Bad post data."
-          }
-        }
-      } 
-  
-  },
-  "/education/{id}": {
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "description": "ID of the education that we want to match",
-        "type": "string"
       }
-    ],
-    "get": {
-      "tags": [
-        "Education"
-      ],
-      "summary": "Get Education with given ID",
-      "parameters": [
-        {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "education id",
-          "schema": {
-            "$ref": "#/components/schemas/id"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "OK",
-          "schema": {
-            "$ref": "#/components/schemas/Education"
-          }
-        },
-        "400": {
-          "description": "Failed. Misunderstood Request."
-        },
-        "404": {
-          "description": "Failed. Education not found."
-        }
-      }
-    },
-    "put": {
-      "summary": "edit an education by ID",
-      "tags": [
-        "Education"
-      ],
-      "parameters": [
-        {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "education id",
-          "schema": {
-            "$ref": "#/components/schemas/id"
-          }
-        }
-      ],
-      "requestBody": {
-        "description": "Education Object",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Education"
-            }
-          }
-        }
       },
-      "produces": [
-        "application/json"
-      ],
-      "responses": {
-        "200": {
-          "description": "OK",
-          "schema": {
-            "$ref": "#/components/schemas/Education"
-          }
-        },
-        "400": {
-          "description": "Failed. Bad post data."
-        }
-      }
-    },
-    "delete": {
-      "summary": "Delete education by ID",
-      "tags": [
-        "Education"
-      ],
-      "parameters": [
-        {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "education Id",
-          "schema": {
-            "$ref": "#/components/schemas/id"
-          }
-        }
-      ],
-      "responses": {
-        "204": {
-          "description": "OK",
-          "schema": {
-            "$ref": "#/components/schemas/id"
-          }
-        },
-        "400": {
-          "description": "Failed. Misunderstood Request."
-        },
-        "404": {
-          "description": "Failed. Education not found."
-        }
-      }
-    }
-  },"/experience": {
-    "get": {
-      "tags": [
-        "Experience"
-      ],
-      "summary": "Returns all Experience",
-      "responses": {
-        "200": {
-          "description": "OK",
-          "schema": {
-            "$ref": "#/components/schemas/Experience_request"
-          }
-        }
-      }
-    },
-    "post": {
-      "tags": [
-        "Experience"
-      ],
-      "summary": "Creates a new Experience",
-      "requestBody": {
-        "description": "Experience Post Object",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ExperiencePostBody"
+        "/experience": {
+            "get": {
+                "tags": [
+                    "Experience"
+                ],
+                
+                "summary": "Returns all Experience",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Experience_response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Experience"
+                ],
+                "summary": "Creates a new Experience",
+                "parameters": [{
+                  "in": "body",
+                  "name": "experience post body",
+                  "schema": {
+                      "$ref": "#/components/schemas/ExperiencePostBody"
+                  }
+              }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
             }
-          }
-        }
-      },
-      "produces": [
-        "application/json"
-      ],
-      "responses": {
-        "201": {
-          "description": "OK",
-          "schema": {
-            "$ref": "#/components/schemas/id"
-          }
         },
-        "400": {
-          "description": "Failed. Bad post data."
-        }
-      }
-    } 
+        "/experience/{id}": {
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of the experience that we want to match",
+                "type": "string"
+            }],
+            "get": {
+                "tags": [
+                    "Experience"
+                ],
+                "summary": "Get experience with given ID",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "experience id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Experience"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Experience not found."
+                    }
+                }
+            },
+            "put": {
+                "summary": "edit Experience by ID",
+                "tags": [
+                    "Experience"
+                ],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "experience id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                },
+                {
+                  "in": "body",
+                  "name": "put body",
+                  "required": true,
+                  "description": "Experience we're updating",
+                  "schema": {
+                      "$ref": "#/components/schemas/ExperiencePostBody"
+                  }
+              }],
+             
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Experience"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Experience by ID",
+                "tags": [
+                    "Experience"
+                ],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "experience Id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                }],
+                "responses": {
+                    "204": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Experience not found."
+                    }
+                }
+            }
+        },
+        "/job": {
+            "get": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "Returns all Jobs",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Jobs_repo"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Job"
+                ],
+                "parameters": [{
+                    "name": "job post body",
+                    "in": "body",
+                    "schema": {
+                        "$ref": "#/components/schemas/JobPostBody"
+                    }
+                }],
+                "summary": "Creates a new Job",
 
-},
-"/experience/{id}": {
-  "parameters": [
-    {
-      "name": "id",
-      "in": "path",
-      "required": true,
-      "description": "ID of the experience that we want to match",
-      "type": "string"
-    }
-  ],
-  "get": {
-    "tags": [
-      "Experience"
-    ],
-    "summary": "Get experience with given ID",
-    "parameters": [
-      {
-        "in": "path",
-        "name": "id",
-        "required": true,
-        "description": "experience id",
-        "schema": {
-          "$ref": "#/components/schemas/id"
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Job"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/job/{id}": {
+            "get": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "Get job with given ID",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "job id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Job"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Job not found."
+                    }
+                }
+            },
+            "put": {
+                "summary": "edit an job by ID",
+                "tags": [
+                    "Job"
+                ],
+                "parameters": [{
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "job id",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "put body",
+                        "required": true,
+                        "description": "job put body for update",
+                        "schema": {
+                            "$ref": "#/components/schemas/JobPostBody"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Job Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Job"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Job"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete job by ID",
+                "tags": [
+                    "Job"
+                ],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "description": "job id",
+                    "schema": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                }],
+                "responses": {
+                    "204": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Job not found."
+                    }
+                }
+            }
         }
-      }
-    ],
-    "responses": {
-      "200": {
-        "description": "OK",
-        "schema": {
-          "$ref": "#/components/schemas/Experience"
-        }
-      },
-      "400": {
-        "description": "Failed. Misunderstood Request."
-      },
-      "404": {
-        "description": "Failed. Experience not found."
-      }
-    }
-  },
-  "put": {
-    "summary": "edit Experience by ID",
-    "tags": [
-      "Experience"
-    ],
-    "parameters": [
-      {
-        "in": "path",
-        "name": "id",
-        "required": true,
-        "description": "experience id",
-        "schema": {
-          "$ref": "#/components/schemas/id"
-        }
-      }
-    ],
-    "requestBody": {
-      "description": "Experience Object",
-      "required": true,
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/components/schemas/Experience"
-          }
-        }
-      }
     },
-    "produces": [
-      "application/json"
-    ],
-    "responses": {
-      "200": {
-        "description": "OK",
-        "schema": {
-          "$ref": "#/components/schemas/Experience"
-        }
-      },
-      "400": {
-        "description": "Failed. Bad post data."
-      }
-    }
-  },
-  "delete": {
-    "summary": "Delete Experience by ID",
-    "tags": [
-      "Experience"
-    ],
-    "parameters": [
-      {
-        "in": "path",
-        "name": "id",
-        "required": true,
-        "description": "experience Id",
-        "schema": {
-          "$ref": "#/components/schemas/id"
-        }
-      }
-    ],
-    "responses": {
-      "204": {
-        "description": "OK",
-        "schema": {
-          "$ref": "#/components/schemas/id"
-        }
-      },
-      "400": {
-        "description": "Failed. Misunderstood Request."
-      },
-      "404": {
-        "description": "Failed. Experience not found."
-      }
-    }
-  }
-},
-"/job": {
-  "get": {
-    "tags": [
-      "Job"
-    ],
-    "summary": "Returns all Jobs",
-    "responses": {
-      "200": {
-        "description": "OK",
-        "schema": {
-          "$ref": "#/components/schemas/Jobs_request"
-        }
-      }
-    }
-  },
-  "post": {
-    "tags": [
-      "Job"
-    ],
-    "summary": "Creates a new Job",
-    "requestBody": {
-      "description": "Job Post Object",
-      "required": true,
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/components/schemas/JobPostBody"
-          }
-        }
-      }
-    },
-    "produces": [
-      "application/json"
-    ],
-    "responses": {
-      "201": {
-        "description": "OK",
-        "schema": {
-          "$ref": "#/components/schemas/id"
-        }
-      },
-      "400": {
-        "description": "Failed. Bad post data."
-      }
-    }
-  } 
-
-},
-"/job/{id}": {
-"parameters": [
-  {
-    "name": "id",
-    "in": "path",
-    "required": true,
-    "description": "ID of the job that we want to match",
-    "type": "string"
-  }
-],
-"get": {
-  "tags": [
-    "Job"
-  ],
-  "summary": "Get job with given ID",
-  "parameters": [
-    {
-      "in": "path",
-      "name": "id",
-      "required": true,
-      "description": "job id",
-      "schema": {
-        "$ref": "#/components/schemas/id"
-      }
-    }
-  ],
-  "responses": {
-    "200": {
-      "description": "OK",
-      "schema": {
-        "$ref": "#/components/schemas/Job"
-      }
-    },
-    "400": {
-      "description": "Failed. Misunderstood Request."
-    },
-    "404": {
-      "description": "Failed. Job not found."
-    }
-  }
-},
-"put": {
-  "summary": "edit an job by ID",
-  "tags": [
-    "Job"
-  ],
-  "parameters": [
-    {
-      "in": "path",
-      "name": "id",
-      "required": true,
-      "description": "job id",
-      "schema": {
-        "$ref": "#/components/schemas/id"
-      }
-    }
-  ],
-  "requestBody": {
-    "description": "Job Object",
-    "required": true,
-    "content": {
-      "application/json": {
-        "schema": {
-          "$ref": "#/components/schemas/Job"
-        }
-      }
-    }
-  },
-  "produces": [
-    "application/json"
-  ],
-  "responses": {
-    "200": {
-      "description": "OK",
-      "schema": {
-        "$ref": "#/components/schemas/Job"
-      }
-    },
-    "400": {
-      "description": "Failed. Bad post data."
-    }
-  }
-},
-"delete": {
-  "summary": "Delete job by ID",
-  "tags": [
-    "Job"
-  ],
-  "parameters": [
-    {
-      "in": "path",
-      "name": "id",
-      "required": true,
-      "description": "job id",
-      "schema": {
-        "$ref": "#/components/schemas/id"
-      }
-    }
-  ],
-  "responses": {
-    "204": {
-      "description": "OK",
-      "schema": {
-        "$ref": "#/components/schemas/id"
-      }
-    },
-    "400": {
-      "description": "Failed. Misunderstood Request."
-    },
-    "404": {
-      "description": "Failed. Job not found."
-    }
-  }
-}
-}
-},
-  "components": {
-    "schemas": {
-      "id": {
-        "properties": {
-          "uuid": {
-            "type": "string"
-          }
-        }
-      },
-      "Employee": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "format": "string"
-          },
-          "job":{
-            "type":"string",
-            "format": "string"
-          }
-        }
-      },
-      "Job": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "title": {
-            "type": "string",
-            "format": "string"
-          },
-          "salary": {
-            "type": "float",
-            "format": "number"
-          }
-        }
-      },
-      "Education": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "employee_id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "institutions": {
-            "type": "string",
-            "format": "string"
-          },
-          "field": {
-            "type": "string",
-            "format": "string"
+    "components": {
+        "schemas": {
+            "id": {
+                "properties": {
+                    "uuid": {
+                        "type": "string"
+                    }
+                }
+            },
+            "institution": {
+              "properties": {
+                  "name": {
+                      "type": "string"
+                  }
+              }
           },
           "degree": {
-            "type": "string",
-            "format": "string"
-          }
-        }
-      },
-      "Experience": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "employee_id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "description": {
-            "type": "string",
-            "format": "string"
-          },
-          "start_date": {
-            "type": "date",
-            "format": "date"
-          },
-          "end_date": {
-            "type": "date",
-            "format": "date"
-          }
-        }
-      },
-      "Employees_request": {
-        "type": "object",
-        "properties": {
-          "Employee": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/Employee"
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
             }
-          }
-        }
-      },
-      "EmployeePostBody": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "format": "string"
-          },
-          "job": {
-            "type": "string",
-            "format": "string"
-          }
-        }
-      },
-      "JobPostBody": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string",
-            "format": "string"
-          },
-          "salary": {
-            "type": "float",
-            "format": "number"
-          }
-        }
-      },
-      "EducationPostBody": {
-        "type": "object",
-        "properties": {
+        },
+        "field": {
           "properties": {
-            "employee_id": {
-              "type": "integer",
-              "format": "int32"
+              "name": {
+                  "type": "string"
+              }
+          }
+      },
+            "Employee": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
             },
-            "institutions": {
-              "type": "string",
-              "format": "string"
+            "Job": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "employee_id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "title": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "salary": {
+                        "type": "number",
+                        "format": "float64"
+                    }
+                }
             },
-            "field": {
-              "type": "string",
-              "format": "string"
+            "Education": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "employee_id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "institution": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "field": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "degree": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
             },
-            "degree": {
-              "type": "string",
-              "format": "string"
+            "Experience": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "employee_id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "description": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "Employees_response": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Employee"
+                }
+            },
+            "EmployeePostBody": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "JobPostBody": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "employee_id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "salary": {
+                        "type": "number",
+                        "format": "float64"
+                    }
+                }
+            },
+            "EducationPostBody": {
+              "type": "object",
+              "properties": {
+                  "employee_id": {
+                      "type": "integer",
+                      "format": "int32"
+                  },
+                  "Institution": {
+                      "type": "string",
+                      "format": "string"
+                  },
+                  "field": {
+                      "type": "string",
+                      "format": "string"
+                  },
+                  "degree": {
+                      "type": "string",
+                      "format": "string"
+                  }
+              }
+            },
+            "ExperiencePostBody": {
+                "type": "object",
+                "properties": {
+                    "employee_id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "description": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "Jobs_response": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Job"
+                }
+            },
+            "Education_response": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Education"
+              }
+            },
+            "Experience_response": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Experience"
+              }
             }
-          }
         }
-      },
-      "ExperiencePostBody": {
-        "type": "object",
-        "properties": {
-          "employee_id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "description": {
-            "type": "string",
-            "format": "string"
-          },
-          "start_date": {
-            "type": "date",
-            "format": "date"
-          },
-          "end_date": {
-            "type": "date",
-            "format": "date"
-          }
-        }
-      },
-      "Jobs_request": {
-        "type": "object",
-        "properties": {
-          "Employee": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/Job"
-            }
-          }
-        }
-      },
-      "Education_request": {
-        "type": "object",
-        "properties": {
-          "Employee": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/Education"
-            }
-          }
-        }
-      },
-      "Experience_request": {
-        "type": "object",
-        "properties": {
-          "Employee": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/Experience"
-            }
-          }
-        }
-      }
     }
-  }
 }
