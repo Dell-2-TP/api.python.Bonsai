@@ -11,7 +11,6 @@ from model.job import Job
 class Employee(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    job =  db.Column(db.String(100))
     # ed_id = db.Column(db.Integer, db.ForeignKey('education.id'))
     job = db.relationship("Job", uselist=False, backref="employee")
     educations = db.relationship('Education', backref='employee')
