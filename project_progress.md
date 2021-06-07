@@ -1,6 +1,6 @@
 # Project Progress #
 
-Currently the Flask based Rest API will serve content as long as the steps in the [readme](./readme.md) file are followed (making sure that python, pip, and pipenv are all installed globally)
+Currently the Flask based Rest API will serve content as long as the steps in the [readme](./README.md) file are followed (making sure that python, pip, and pipenv are all installed globally)
 
 The schema and endpoints can be viewed by starting the API and navigating to localhost:5000/swagger. This documentation follows the openapi 3.0 style and gives reasonable descriptions for all the endpoints.
 
